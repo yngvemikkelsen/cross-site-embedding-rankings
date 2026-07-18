@@ -9,6 +9,10 @@ only to credentialed users under their respective data use agreements (see below
 repository contains the code, the exact model and environment specifications, the sampling
 rules, and the aggregate (non-identifying) numerical results.
 
+```bash
+git clone https://github.com/yngvemikkelsen/cross-site-embedding-rankings.git
+```
+
 ## What's here
 
 ```
@@ -74,7 +78,10 @@ Every headline number in `results/aggregate_results.json` should reproduce from 
 ## Citation
 
 If you use this code, please cite the manuscript (details on publication) and the two source
-corpora (DOIs above).
+corpora (DOIs above). A `CITATION.cff` is included so GitHub's "Cite this repository" button
+produces a ready-made reference; update its DOI once the Zenodo archive is minted.
+
+Repository: https://github.com/yngvemikkelsen/cross-site-embedding-rankings
 
 ## License
 
