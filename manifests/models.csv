@@ -1,0 +1,14 @@
+key,family,type,hf_repo,hf_repo_secondary,pooling,query_prefix,doc_prefix,revision,notes
+bge,BGE-base,contrastive,BAAI/bge-base-en-v1.5,,cls,"Represent this sentence for searching relevant passages: ",,PIN_COMMIT_HASH,CLS pooling with retrieval query instruction
+gte,GTE-base,contrastive,thenlper/gte-base,,mean,,,PIN_COMMIT_HASH,mean pooling
+e5,E5-base,contrastive,intfloat/e5-base-v2,,mean,query: ,passage: ,PIN_COMMIT_HASH,documented E5 query/passage prefixes
+nomic,Nomic-embed,contrastive,nomic-ai/nomic-embed-text-v1.5,,mean,search_query: ,search_document: ,PIN_COMMIT_HASH,trust_remote_code=True; documented Nomic prefixes
+mpnet,all-mpnet-base,contrastive,sentence-transformers/all-mpnet-base-v2,,mean,,,PIN_COMMIT_HASH,canonical sentence-transformers mean pooling
+minilm,all-MiniLM-L6,contrastive,sentence-transformers/all-MiniLM-L6-v2,,mean,,,PIN_COMMIT_HASH,canonical sentence-transformers mean pooling
+medcpt,MedCPT,contrastive,ncbi/MedCPT-Query-Encoder,ncbi/MedCPT-Article-Encoder,cls,,,PIN_COMMIT_HASH,dual-encoder: separate query and article encoders with CLS pooling
+biolord,BioLORD-2023,contrastive,FremyCompany/BioLORD-2023,,mean,,,PIN_COMMIT_HASH,mean pooling
+bert-base,BERT,mlm,bert-base-uncased,,cls,,,PIN_COMMIT_HASH,MLM backbone; no canonical sentence pooling; standardized to CLS and reported explicitly
+biobert,BioBERT,mlm,dmis-lab/biobert-v1.1,,cls,,,PIN_COMMIT_HASH,MLM backbone; standardized to CLS
+clinicalbert,ClinicalBERT,mlm,medicalai/ClinicalBERT,,cls,,,PIN_COMMIT_HASH,MLM backbone; standardized to CLS
+pubmedbert,PubMedBERT,mlm,microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext,,cls,,,PIN_COMMIT_HASH,MLM backbone; standardized to CLS
+scibert,SciBERT,mlm,allenai/scibert_scivocab_uncased,,cls,,,PIN_COMMIT_HASH,MLM backbone; standardized to CLS
