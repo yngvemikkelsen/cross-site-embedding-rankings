@@ -9,7 +9,7 @@ repository-code: "https://github.com/yngvemikkelsen/cross-site-embedding-ranking
 license: MIT
 version: "1.0.0"
 date-released: "2026-07-18"
-# doi: 10.5281/zenodo.XXXXXXX   # <-- add the Zenodo archive DOI once minted, then commit
+doi: 10.5281/zenodo.21434089
 keywords:
   - clinical natural language processing
   - information retrieval
