@@ -1,18 +1,20 @@
-# Exact versions used for the analysis. Fill each ==VERSION from your run environment:
-#   pip freeze | grep -Ei '^(torch|transformers|sentence-transformers|numpy|scipy|pandas|einops)=='
-# The embedding step (two_site_v2_analyze.py) requires torch + transformers;
-# the statistics and sensitivity scripts require only numpy + scipy (+ pandas for I/O).
- 
-torch==PIN_VERSION
-transformers==PIN_VERSION
-sentence-transformers==PIN_VERSION
-einops==PIN_VERSION            # required by nomic-embed-text (trust_remote_code)
-numpy==PIN_VERSION
-scipy==PIN_VERSION
-pandas==PIN_VERSION
- 
-# Optional, for exact CUDA/CPU reproducibility, also record:
+# Exact library versions used for the analysis (Python 3, macOS/arm64; Apple M2 Max).
+# Pinned from the analysis environment. sentence-transformers is intentionally NOT listed:
+# models are loaded directly via transformers.AutoModel/AutoTokenizer with manual pooling,
+# so the sentence-transformers package is not a dependency.
+#
+# The embedding step (two_site_v2_analyze.py) requires torch + transformers (+ einops for
+# nomic-embed's trust_remote_code); the statistics and sensitivity scripts require only
+# numpy + scipy (+ pandas for I/O).
+
+torch==2.2.0
+transformers==4.50.3
+einops==0.8.2            # required by nomic-embed-text-v1.5 (trust_remote_code)
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.3
+
+# Recorded for exact reproducibility (env/capture_env.sh writes these to environment.lock):
 #   python --version
-#   nvidia-smi (driver + CUDA) if GPU was used
-#   platform (OS, arch)
- 
+#   platform: macOS / arm64 (Apple M2 Max)
+#   accelerator: Apple MPS (or CPU); no CUDA
