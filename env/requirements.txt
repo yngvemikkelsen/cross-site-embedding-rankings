@@ -2,7 +2,7 @@
 #   pip freeze | grep -Ei '^(torch|transformers|sentence-transformers|numpy|scipy|pandas|einops)=='
 # The embedding step (two_site_v2_analyze.py) requires torch + transformers;
 # the statistics and sensitivity scripts require only numpy + scipy (+ pandas for I/O).
-
+ 
 torch==PIN_VERSION
 transformers==PIN_VERSION
 sentence-transformers==PIN_VERSION
@@ -10,8 +10,9 @@ einops==PIN_VERSION            # required by nomic-embed-text (trust_remote_code
 numpy==PIN_VERSION
 scipy==PIN_VERSION
 pandas==PIN_VERSION
-
+ 
 # Optional, for exact CUDA/CPU reproducibility, also record:
 #   python --version
 #   nvidia-smi (driver + CUDA) if GPU was used
 #   platform (OS, arch)
+ 
