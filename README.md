@@ -21,19 +21,19 @@ git clone https://github.com/yngvemikkelsen/cross-site-embedding-rankings.git
 src/                      analysis pipeline (run in order; see docs/RUN.md)
   two_site_v2.py            data layer: extract, dedup, patient IDs, query-excluded targets, matched N=1235
   two_site_v2_analyze.py    model layer: embed (13 models), chunk, score, cache RR vectors
-  two_site_v2_stats.py      statistics: patient-clustered bootstrap CIs; variance decomposition (Tables 2-4)
-  chunk_sensitivity2.py     robustness: chunk-count / order-statistic sensitivity (Table 5, part)
+  two_site_v2_stats.py      statistics: patient-clustered bootstrap CIs; variance decomposition (Tables 3-5)
+  chunk_sensitivity2.py     robustness: chunk-count / order-statistic sensitivity (Table 6, part)
   anisotropy_check.py       robustness: embedding anisotropy diagnostic
-  centering_check.py        robustness: mean-centering sensitivity (Table 5, part)
+  centering_check.py        robustness: mean-centering sensitivity (Table 6, part)
   er_audit.py               ER-Reason extraction audit
 manifests/
   models.csv                exact HF repo, pooling, prefixes for all 13 models
   models_resolved.csv       (generated) exact commit hash per model — run env/resolve_revisions.py
   sampling_manifest.md      extraction, dedup, and matched-sampling rules + attrition table
 results/
-  aggregate_results.json    every number behind Tables 1-5 and the robustness analyses (no note text)
+  aggregate_results.json    every number behind Tables 1-6 and the robustness analyses (no note text)
 env/
-  requirements.txt          library versions (replace PIN_VERSION placeholders before pinning; see notes)
+  requirements.txt          exact pinned analysis-library versions
   capture_env.sh            records python/platform/GPU/pip-freeze into environment.lock
   resolve_revisions.py      resolves exact HF commit hashes into the model manifest
 docs/
@@ -55,17 +55,17 @@ Place the downloaded corpora where the scripts expect them (paths are set at the
 ```bash
 # 0. environment
 python -m venv .venv && source .venv/bin/activate
-pip install -r env/requirements.txt      # after pinning versions
+pip install -r env/requirements.txt
 bash env/capture_env.sh                   # writes env/environment.lock
 python env/resolve_revisions.py           # writes manifests/models_resolved.csv
 
 # 1-4. pipeline (see docs/RUN.md for full commands and expected outputs)
 python src/two_site_v2.py                 # build matched analysis set
 python src/two_site_v2_analyze.py --run --chunk   # embed + score (needs GPU for speed)
-python src/two_site_v2_stats.py           # Tables 2-4
-python src/chunk_sensitivity2.py          # chunk-count robustness (Table 5)
+python src/two_site_v2_stats.py           # Tables 3-5
+python src/chunk_sensitivity2.py          # chunk-count robustness (Table 6)
 python src/anisotropy_check.py            # anisotropy diagnostic
-python src/centering_check.py             # centering robustness (Table 5)
+python src/centering_check.py             # centering robustness (Table 6)
 ```
 
 Every headline number in `results/aggregate_results.json` should reproduce from these steps.
