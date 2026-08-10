@@ -1,5 +1,7 @@
 # Cross-Site Stability of Embedding Model Rankings for Known-Item Retrieval From Clinical Notes
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21434089.svg)](https://doi.org/10.5281/zenodo.21434089)
+
 Analysis code and aggregate results for the two-corpus comparative evaluation study
 (BIDMC/MIMIC-IV-Note vs UCSF/ER-Reason). This repository reproduces every table in the
 manuscript from the source corpora.
@@ -31,7 +33,7 @@ manifests/
 results/
   aggregate_results.json    every number behind Tables 1-5 and the robustness analyses (no note text)
 env/
-  requirements.txt          pinned library versions (fill from your run)
+  requirements.txt          library versions (replace PIN_VERSION placeholders before pinning; see notes)
   capture_env.sh            records python/platform/GPU/pip-freeze into environment.lock
   resolve_revisions.py      resolves exact HF commit hashes into the model manifest
 docs/
@@ -79,7 +81,7 @@ Every headline number in `results/aggregate_results.json` should reproduce from 
 
 If you use this code, please cite the manuscript (details on publication) and the two source
 corpora (DOIs above). A `CITATION.cff` is included so GitHub's "Cite this repository" button
-produces a ready-made reference; update its DOI once the Zenodo archive is minted.
+produces a ready-made reference. Archived release: doi:10.5281/zenodo.21434089 (https://doi.org/10.5281/zenodo.21434089).
 
 Repository: https://github.com/yngvemikkelsen/cross-site-embedding-rankings
 
