@@ -1,0 +1,14 @@
+key,family,type,hf_repo,hf_repo_secondary,pooling,query_prefix,doc_prefix,revision,notes,revision_secondary
+bge,BGE-base,contrastive,BAAI/bge-base-en-v1.5,,cls,Represent this sentence for searching relevant passages: ,,a5beb1e3e68b9ab74eb54cfd186867f64f240e1a,CLS pooling with retrieval query instruction,
+gte,GTE-base,contrastive,thenlper/gte-base,,mean,,,c078288308d8dee004ab72c6191778064285ec0c,mean pooling,
+e5,E5-base,contrastive,intfloat/e5-base-v2,,mean,query: ,passage: ,f52bf8ec8c7124536f0efb74aca902b2995e5bcd,documented E5 query/passage prefixes,
+nomic,Nomic-embed,contrastive,nomic-ai/nomic-embed-text-v1.5,,mean,search_query: ,search_document: ,e9b6763023c676ca8431644204f50c2b100d9aab,trust_remote_code=True; documented Nomic prefixes,
+mpnet,all-mpnet-base,contrastive,sentence-transformers/all-mpnet-base-v2,,mean,,,e8c3b32edf5434bc2275fc9bab85f82640a19130,canonical sentence-transformers mean pooling,
+minilm,all-MiniLM-L6,contrastive,sentence-transformers/all-MiniLM-L6-v2,,mean,,,1110a243fdf4706b3f48f1d95db1a4f5529b4d41,canonical sentence-transformers mean pooling,
+medcpt,MedCPT,contrastive,ncbi/MedCPT-Query-Encoder,ncbi/MedCPT-Article-Encoder,cls,,,d83a36cc6b8e3a5c5e9d9d6ba156808c1643dcbc,dual-encoder: separate query and article encoders with CLS pooling,d05a736da4bb84ee4057b7f7999485be6ed85465
+biolord,BioLORD-2023,contrastive,FremyCompany/BioLORD-2023,,mean,,,167aab527b238a50ca65224e6319215d2ff4fc9f,mean pooling,
+bert-base,BERT,mlm,bert-base-uncased,,cls,,,86b5e0934494bd15c9632b12f734a8a67f723594,MLM backbone; no canonical sentence pooling; standardized to CLS and reported explicitly,
+biobert,BioBERT,mlm,dmis-lab/biobert-v1.1,,cls,,,551ca18efd7f052c8dfa0b01c94c2a8e68bc5488,MLM backbone; standardized to CLS,
+clinicalbert,ClinicalBERT,mlm,medicalai/ClinicalBERT,,cls,,,f7c7f65227cb311f33a79c24858d875876d478ac,MLM backbone; standardized to CLS,
+pubmedbert,PubMedBERT,mlm,microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext,,cls,,,e1354b7a3a09615f6aba48dfad4b7a613eef7062,MLM backbone; standardized to CLS,
+scibert,SciBERT,mlm,allenai/scibert_scivocab_uncased,,cls,,,24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1,MLM backbone; standardized to CLS,
