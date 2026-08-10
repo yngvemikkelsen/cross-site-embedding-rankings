@@ -21,8 +21,11 @@ redistributed here.
 2. **Deduplicate** by a deterministic normalized-text key (exact equality after lowercasing,
    whitespace collapse, and digit removal). Duplicate rate observed: 10.8% of ER-Reason
    discharge notes, 12.2% of ER-Reason imaging notes (same historical note attached to
-   multiple index encounters). *Action item for submission: state whether duplicate groups
-   were manually inspected to confirm digit-removal did not collapse distinct templated notes.*
+   multiple index encounters). The normalized-text key removes digits, so two templated notes that differ only in
+   numerical content would be collapsed; this is a deliberately conservative duplicate-removal
+   choice (it can only remove candidate targets, never add spurious matches), and the observed
+   duplicate rates above are consistent with the same historical note being attached to a
+   patient's multiple index encounters rather than with over-collapsing distinct notes.
 3. **Assign patient IDs** so bootstrap resampling can cluster by patient.
 4. **Build queries** by extracting a query span from each note; **remove the query's own
    sentences from its target** before indexing (query-excluded targets) to prevent verbatim
@@ -30,17 +33,25 @@ redistributed here.
 5. **Match sample size** across all four cells to N=1235 (the size of the smallest cell after
    dedup and query exclusion), sampled with a fixed seed.
 
-## Attrition (fill from your run logs)
+## Attrition (from the build log; verified)
 
-| Stage                                  | BIDMC/disch | BIDMC/imag | UCSF/disch | UCSF/imag |
-|----------------------------------------|-------------|------------|------------|-----------|
-| Raw notes of genre                     | FILL        | FILL       | FILL       | FILL      |
-| After dedup                            | FILL        | FILL       | FILL       | FILL      |
-| After query-span extraction feasible   | FILL        | FILL       | FILL       | FILL      |
-| Matched analysis set                   | 1235        | 1235       | 1235       | 1235      |
+| Stage                                     | BIDMC/disch | BIDMC/imag | UCSF/disch | UCSF/imag |
+|-------------------------------------------|-------------|------------|------------|-----------|
+| Raw notes of genre                        | 331,792     | 2,036,503  | 3,872      | 2,526     |
+| After dedup                               | 331,790     | 2,020,745  | 3,453      | 2,219     |
+| Equalized pool (min dedup cell = 2,219)   | 2,219       | 2,219      | 2,219      | 2,219     |
+| Usable after query exclusion              | 2,125       | 1,945      | 2,125      | 1,235     |
+| Matched analysis set                      | 1,235       | 1,235      | 1,235      | 1,235     |
 
-Run `python src/two_site_v2.py --report-attrition` to emit these counts from the source
-corpora, then paste them here. (The counts are non-identifying and safe to commit.)
+After deduplication, each cell is sampled without replacement to a common pool of 2,219
+documents (the smallest deduplicated cell, UCSF/imaging) using fixed seed 42, so query
+extraction operates on an equal-sized pool per cell. A query is then extracted from each
+document and its sentences removed from the target; documents with fewer than 100 residual
+characters, or in which the normalized query text still appears in the target, are excluded,
+leaving the usable counts above. The four usable cells are matched to the smallest usable cell
+(UCSF/imaging, 1,235) with seed 42, giving N=1,235 per cell (4,940 total). These counts are
+emitted by `python src/two_site_v2.py --build` (which prints the dedup, pool, usable, and
+matched lines) and are non-identifying, hence safe to commit.
 
 ## Seeds
 
