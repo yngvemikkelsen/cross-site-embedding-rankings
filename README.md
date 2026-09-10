@@ -15,7 +15,7 @@ rules, and the aggregate (non-identifying) numerical results.
 git clone https://github.com/yngvemikkelsen/cross-site-embedding-rankings.git
 ```
 
-## Version 2.0.1 — peer-review revision
+## Version 2.0.2 — peer-review revision
 
 This release accompanies the revised manuscript (JMIR AI #109305) and supersedes v1.1.2.
 
