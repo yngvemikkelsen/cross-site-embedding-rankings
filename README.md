@@ -162,7 +162,7 @@ contrasts in a single run and is the quickest way to verify the reported values.
 If you use this code, please cite the manuscript (details on publication) and the two source
 corpora (DOIs above). A `CITATION.cff` is included so GitHub's "Cite this repository" button
 produces a ready-made reference. Archived release: doi:10.5281/zenodo.21434089
-(https://doi.org/10.5281/zenodo.21434089).
+(https://doi.org/10.5281/zenodo.21434088).
 
 Repository: https://github.com/yngvemikkelsen/cross-site-embedding-rankings
 
