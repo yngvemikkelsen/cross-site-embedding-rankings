@@ -20,12 +20,21 @@ redistributed here.
 1. **Extract** notes of each genre from each corpus.
 2. **Deduplicate** by a deterministic normalized-text key (exact equality after lowercasing,
    whitespace collapse, and digit removal). Duplicate rate observed: 10.8% of ER-Reason
-   discharge notes, 12.2% of ER-Reason imaging notes (same historical note attached to
-   multiple index encounters). The normalized-text key removes digits, so two templated notes that differ only in
-   numerical content would be collapsed; this is a deliberately conservative duplicate-removal
-   choice (it can only remove candidate targets, never add spurious matches), and the observed
-   duplicate rates above are consistent with the same historical note being attached to a
-   patient's multiple index encounters rather than with over-collapsing distinct notes.
+   discharge notes, 12.2% of ER-Reason imaging notes, and 0.77% of MIMIC-IV radiology notes.
+   The normalized-text key removes digits, so two templated notes that differ only in numerical
+   content are collapsed. Every merged group was classified exhaustively (see
+   `src/revision/dup_classify.py`): of 10,110 merged groups across the four source corpora,
+   9,707 (96.0%) were byte-identical, differed only in whitespace, punctuation or case while
+   carrying the identical digit sequence, or became identical after the pipeline's own date,
+   time and identifier scrubbing. The remaining 403 groups (1,007 documents) differ in content
+   after scrubbing and are false-positive merges, concentrated in templated procedure and
+   measurement reports whose narrative is fixed and whose discriminative content is numeric
+   (automatically generated vascular surveillance summaries, catheter placement and
+   paracentesis notes, dosimetry fields). They amount to 0.049% of the MIMIC-IV radiology
+   corpus and 0.387% of ER-Reason discharge notes, with none in the MIMIC-IV discharge corpus
+   and none in the ER-Reason imaging cell that determines N. Because deduplication precedes
+   sampling of the equalized pool, these merges remove candidate targets rather than altering
+   the analyzed set; no direction of bias is claimed.
 3. **Assign patient IDs** so bootstrap resampling can cluster by patient.
 4. **Build queries** by extracting a query span from each note; **remove the query's own
    sentences from its target** before indexing (query-excluded targets) to prevent verbatim

@@ -19,7 +19,11 @@ Point the scripts at your credentialed downloads via environment variables (defa
 
 ```bash
 export ER_REASON_CSV="$HOME/physionet.org/files/er-reason/1.0.0/er_reason.csv"
-export RESULTS_DIR="$HOME/paper19_results"          # where caches + outputs are written
+export RESULTS_DIR="/path/to/your/results"         # REQUIRED: where the analysis set,
+                                                    # embedding caches, RR vectors and
+                                                    # output tables are written and read.
+                                                    # All scripts honour it; set it to the
+                                                    # same value for every step.
 # MIMIC-IV-Note note dir defaults to $HOME/physionet.org/files/mimic-iv-note/2.2/note
 # or pass --mimic-note /path/to/note to src/two_site_v2.py
 ```

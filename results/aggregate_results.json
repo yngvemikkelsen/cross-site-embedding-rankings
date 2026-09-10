@@ -1,5 +1,5 @@
 {
- "_description": "Aggregate, non-identifying results reproducing every table (Table 1 MRR@10; Table 2 Hit@1/Hit@10; Tables 3-6 as in the manuscript) in the manuscript. Contains only derived statistics (MRR, tau, eta-squared, counts). No clinical note text, no patient identifiers.",
+ "_description": "Aggregate, non-identifying results reproducing every table (Table 1 MRR@10; Table 2 Hit@1/Hit@10; Tables 3-6 as in the manuscript) in the manuscript. Contains only derived statistics (MRR, tau, eta-squared, counts). No clinical note text, no patient identifiers. Regenerated for release 2.0.0 after the per-chunk instruction-prefix correction; supersedes the values in 1.1.2.",
  "design": {
   "sites": {
    "BIDMC": "MIMIC-IV-Note v2.2",
@@ -15,7 +15,8 @@
    "window_tokens": 510,
    "stride_tokens": 384,
    "overlap_tokens": 126,
-   "aggregation": "max-over-chunk cosine"
+   "aggregation": "max-over-chunk cosine",
+   "document_prefix": "tokenized separately and prepended to every window; window budget reduced by the prefix length, so content overlap is 124 tokens for E5 and 122 for Nomic-embed"
   },
   "contrastive_models": [
    "bge",
@@ -36,11 +37,11 @@
   ]
  },
  "table1_mrr_at_10": {
-  "_note": "MRR@10 with 95% patient-clustered CI, query-excluded, chunked. Point values; see per-model CIs in results CSV.",
+  "_note": "MRR@10, query-excluded, chunked. Point values; 95% patient-clustered CIs in table1_mrr_at_10_ci.",
   "bge": {
    "BIDMC_discharge": 0.28,
    "BIDMC_imaging": 0.181,
-   "UCSF_discharge": 0.282,
+   "UCSF_discharge": 0.281,
    "UCSF_imaging": 0.184
   },
   "gte": {
@@ -50,16 +51,16 @@
    "UCSF_imaging": 0.199
   },
   "e5": {
-   "BIDMC_discharge": 0.228,
-   "BIDMC_imaging": 0.168,
-   "UCSF_discharge": 0.242,
-   "UCSF_imaging": 0.139
+   "BIDMC_discharge": 0.233,
+   "BIDMC_imaging": 0.182,
+   "UCSF_discharge": 0.252,
+   "UCSF_imaging": 0.158
   },
   "nomic": {
-   "BIDMC_discharge": 0.338,
-   "BIDMC_imaging": 0.192,
-   "UCSF_discharge": 0.292,
-   "UCSF_imaging": 0.191
+   "BIDMC_discharge": 0.329,
+   "BIDMC_imaging": 0.189,
+   "UCSF_discharge": 0.298,
+   "UCSF_imaging": 0.177
   },
   "mpnet": {
    "BIDMC_discharge": 0.266,
@@ -84,51 +85,317 @@
    "BIDMC_imaging": 0.163,
    "UCSF_discharge": 0.217,
    "UCSF_imaging": 0.158
+  },
+  "bert-base": {
+   "BIDMC_discharge": 0.015,
+   "BIDMC_imaging": 0.018,
+   "UCSF_discharge": 0.016,
+   "UCSF_imaging": 0.012
+  },
+  "biobert": {
+   "BIDMC_discharge": 0.019,
+   "BIDMC_imaging": 0.026,
+   "UCSF_discharge": 0.024,
+   "UCSF_imaging": 0.011
+  },
+  "clinicalbert": {
+   "BIDMC_discharge": 0.025,
+   "BIDMC_imaging": 0.069,
+   "UCSF_discharge": 0.033,
+   "UCSF_imaging": 0.043
+  },
+  "pubmedbert": {
+   "BIDMC_discharge": 0.029,
+   "BIDMC_imaging": 0.049,
+   "UCSF_discharge": 0.036,
+   "UCSF_imaging": 0.031
+  },
+  "scibert": {
+   "BIDMC_discharge": 0.018,
+   "BIDMC_imaging": 0.021,
+   "UCSF_discharge": 0.012,
+   "UCSF_imaging": 0.011
+  }
+ },
+ "table1_mrr_at_10_ci": {
+  "bge": {
+   "BIDMC_discharge": [
+    0.26,
+    0.303
+   ],
+   "BIDMC_imaging": [
+    0.163,
+    0.199
+   ],
+   "UCSF_discharge": [
+    0.259,
+    0.303
+   ],
+   "UCSF_imaging": [
+    0.166,
+    0.202
+   ]
+  },
+  "gte": {
+   "BIDMC_discharge": [
+    0.275,
+    0.318
+   ],
+   "BIDMC_imaging": [
+    0.177,
+    0.214
+   ],
+   "UCSF_discharge": [
+    0.28,
+    0.323
+   ],
+   "UCSF_imaging": [
+    0.181,
+    0.218
+   ]
+  },
+  "e5": {
+   "BIDMC_discharge": [
+    0.213,
+    0.254
+   ],
+   "BIDMC_imaging": [
+    0.163,
+    0.201
+   ],
+   "UCSF_discharge": [
+    0.23,
+    0.273
+   ],
+   "UCSF_imaging": [
+    0.141,
+    0.174
+   ]
+  },
+  "nomic": {
+   "BIDMC_discharge": [
+    0.306,
+    0.353
+   ],
+   "BIDMC_imaging": [
+    0.169,
+    0.208
+   ],
+   "UCSF_discharge": [
+    0.275,
+    0.321
+   ],
+   "UCSF_imaging": [
+    0.159,
+    0.195
+   ]
+  },
+  "mpnet": {
+   "BIDMC_discharge": [
+    0.244,
+    0.288
+   ],
+   "BIDMC_imaging": [
+    0.167,
+    0.204
+   ],
+   "UCSF_discharge": [
+    0.269,
+    0.314
+   ],
+   "UCSF_imaging": [
+    0.148,
+    0.182
+   ]
+  },
+  "minilm": {
+   "BIDMC_discharge": [
+    0.213,
+    0.254
+   ],
+   "BIDMC_imaging": [
+    0.153,
+    0.189
+   ],
+   "UCSF_discharge": [
+    0.244,
+    0.288
+   ],
+   "UCSF_imaging": [
+    0.14,
+    0.173
+   ]
+  },
+  "medcpt": {
+   "BIDMC_discharge": [
+    0.135,
+    0.169
+   ],
+   "BIDMC_imaging": [
+    0.131,
+    0.163
+   ],
+   "UCSF_discharge": [
+    0.157,
+    0.194
+   ],
+   "UCSF_imaging": [
+    0.13,
+    0.163
+   ]
+  },
+  "biolord": {
+   "BIDMC_discharge": [
+    0.174,
+    0.213
+   ],
+   "BIDMC_imaging": [
+    0.146,
+    0.182
+   ],
+   "UCSF_discharge": [
+    0.198,
+    0.238
+   ],
+   "UCSF_imaging": [
+    0.141,
+    0.175
+   ]
+  },
+  "bert-base": {
+   "BIDMC_discharge": [
+    0.011,
+    0.02
+   ],
+   "BIDMC_imaging": [
+    0.012,
+    0.024
+   ],
+   "UCSF_discharge": [
+    0.011,
+    0.022
+   ],
+   "UCSF_imaging": [
+    0.007,
+    0.017
+   ]
+  },
+  "biobert": {
+   "BIDMC_discharge": [
+    0.013,
+    0.025
+   ],
+   "BIDMC_imaging": [
+    0.019,
+    0.033
+   ],
+   "UCSF_discharge": [
+    0.017,
+    0.031
+   ],
+   "UCSF_imaging": [
+    0.007,
+    0.015
+   ]
+  },
+  "clinicalbert": {
+   "BIDMC_discharge": [
+    0.018,
+    0.032
+   ],
+   "BIDMC_imaging": [
+    0.058,
+    0.081
+   ],
+   "UCSF_discharge": [
+    0.025,
+    0.042
+   ],
+   "UCSF_imaging": [
+    0.034,
+    0.052
+   ]
+  },
+  "pubmedbert": {
+   "BIDMC_discharge": [
+    0.022,
+    0.036
+   ],
+   "BIDMC_imaging": [
+    0.039,
+    0.059
+   ],
+   "UCSF_discharge": [
+    0.028,
+    0.045
+   ],
+   "UCSF_imaging": [
+    0.024,
+    0.04
+   ]
+  },
+  "scibert": {
+   "BIDMC_discharge": [
+    0.012,
+    0.025
+   ],
+   "BIDMC_imaging": [
+    0.015,
+    0.027
+   ],
+   "UCSF_discharge": [
+    0.008,
+    0.017
+   ],
+   "UCSF_imaging": [
+    0.006,
+    0.015
+   ]
   }
  },
  "table2_hit_at_1_and_10": {
-  "_note": "Hit@1 and Hit@10 (=Recall@k for known-item retrieval; one relevant target per query). Mean over the 8 contrastive models, 95% patient-clustered CI (2000 resamples), best-chunk scoring. Hit@10 = fraction with target in top 10; Hit@1 = fraction ranked first.",
+  "_note": "Hit@1 and Hit@10 (=Recall@k for known-item retrieval; one relevant target per query). Mean over the 8 contrastive models, 95% patient-clustered CI (2000 resamples), best-chunk scoring.",
   "hit_at_1_contrastive_8": {
    "BIDMC_discharge": [
     0.179,
     0.164,
-    0.195
+    0.194
    ],
    "BIDMC_imaging": [
-    0.111,
-    0.098,
-    0.124
+    0.112,
+    0.099,
+    0.125
    ],
    "UCSF_discharge": [
-    0.18,
-    0.166,
-    0.195
+    0.183,
+    0.168,
+    0.198
    ],
    "UCSF_imaging": [
     0.105,
     0.093,
-    0.117
+    0.118
    ]
   },
   "hit_at_10_contrastive_8": {
    "BIDMC_discharge": [
-    0.425,
+    0.424,
     0.405,
     0.445
    ],
    "BIDMC_imaging": [
-    0.338,
-    0.317,
-    0.36
+    0.341,
+    0.319,
+    0.362
    ],
    "UCSF_discharge": [
-    0.455,
+    0.456,
     0.436,
-    0.475
+    0.478
    ],
    "UCSF_imaging": [
     0.341,
-    0.321,
+    0.32,
     0.362
    ]
   },
@@ -171,38 +438,38 @@
    },
    "e5": {
     "BIDMC_discharge": {
-     "hit_at_1": 0.167,
-     "hit_at_10": 0.385
+     "hit_at_1": 0.164,
+     "hit_at_10": 0.411
     },
     "BIDMC_imaging": {
-     "hit_at_1": 0.109,
-     "hit_at_10": 0.318
+     "hit_at_1": 0.118,
+     "hit_at_10": 0.34
     },
     "UCSF_discharge": {
-     "hit_at_1": 0.168,
-     "hit_at_10": 0.422
+     "hit_at_1": 0.177,
+     "hit_at_10": 0.436
     },
     "UCSF_imaging": {
-     "hit_at_1": 0.089,
-     "hit_at_10": 0.291
+     "hit_at_1": 0.101,
+     "hit_at_10": 0.317
     }
    },
    "nomic": {
     "BIDMC_discharge": {
-     "hit_at_1": 0.258,
-     "hit_at_10": 0.529
+     "hit_at_1": 0.257,
+     "hit_at_10": 0.503
     },
     "BIDMC_imaging": {
-     "hit_at_1": 0.125,
-     "hit_at_10": 0.362
+     "hit_at_1": 0.124,
+     "hit_at_10": 0.36
     },
     "UCSF_discharge": {
-     "hit_at_1": 0.209,
-     "hit_at_10": 0.494
+     "hit_at_1": 0.22,
+     "hit_at_10": 0.491
     },
     "UCSF_imaging": {
-     "hit_at_1": 0.128,
-     "hit_at_10": 0.36
+     "hit_at_1": 0.12,
+     "hit_at_10": 0.335
     }
    },
    "mpnet": {
@@ -375,7 +642,7 @@
    "tau": 0.857,
    "ci": [
     0.643,
-    0.929
+    1.0
    ]
   },
   "discharge_full13": {
@@ -386,16 +653,16 @@
    ]
   },
   "imaging_contrastive": {
-   "tau": 0.714,
+   "tau": 0.643,
    "ci": [
-    0.429,
-    0.929
+    0.357,
+    0.857
    ]
   },
   "imaging_full13": {
-   "tau": 0.846,
+   "tau": 0.821,
    "ci": [
-    0.744,
+    0.692,
     0.923
    ]
   },
@@ -405,23 +672,23 @@
   }
  },
  "table4_selection_regret": {
-  "_note": "Observed point regret with patient-clustered bootstrap 95% CI. Best model reselected within each replicate.",
+  "_note": "Observed point regret with patient-clustered bootstrap 95% CI. Best model reselected within each replicate. Computed from unrounded MRR.",
   "discharge_BIDMC_to_UCSF": {
    "source_best": "nomic",
    "dest_best": "gte",
-   "observed": 0.009,
+   "observed": 0.003,
    "ci": [
     0.0,
-    0.028
+    0.021
    ]
   },
   "discharge_UCSF_to_BIDMC": {
    "source_best": "gte",
    "dest_best": "nomic",
-   "observed": 0.041,
+   "observed": 0.033,
    "ci": [
     0.0,
-    0.083
+    0.071
    ]
   },
   "imaging_BIDMC_to_UCSF": {
@@ -430,7 +697,7 @@
    "observed": 0.0,
    "ci": [
     0.0,
-    0.034
+    0.039
    ]
   },
   "imaging_UCSF_to_BIDMC": {
@@ -439,105 +706,128 @@
    "observed": 0.0,
    "ci": [
     0.0,
-    0.013
+    0.008
    ]
   }
  },
  "table5_variance_decomposition": {
-  "_note": "eta-squared. Full panel = point estimates; contrastive = point + 95% patient-clustered CI.",
+  "_note": "eta-squared of cell-level mean MRR@10, not of individual query outcomes. Full panel = point estimates; contrastive = point + 95% patient-clustered CI, with the full factorial decomposition recalculated within each bootstrap replicate.",
   "full_panel_13": {
-   "model": 0.873,
-   "genre": 0.057,
-   "model_x_genre": 0.062,
-   "model_x_site_x_genre": 0.004,
+   "model": 0.874,
+   "site": 0.0,
+   "genre": 0.056,
    "model_x_site": 0.002,
+   "model_x_genre": 0.064,
    "site_x_genre": 0.002,
-   "site": 0.0
+   "model_x_site_x_genre": 0.002
   },
   "contrastive_8": {
    "model": {
-    "eta2": 0.329,
+    "eta2": 0.311,
     "ci": [
-     0.261,
-     0.411
-    ]
-   },
-   "genre": {
-    "eta2": 0.535,
-    "ci": [
-     0.44,
-     0.621
-    ]
-   },
-   "model_x_genre": {
-    "eta2": 0.087,
-    "ci": [
-     0.064,
-     0.113
-    ]
-   },
-   "model_x_site_x_genre": {
-    "eta2": 0.02,
-    "ci": [
-     0.01,
-     0.035
-    ]
-   },
-   "model_x_site": {
-    "eta2": 0.012,
-    "ci": [
-     0.005,
-     0.022
-    ]
-   },
-   "site_x_genre": {
-    "eta2": 0.011,
-    "ci": [
-     0.0,
-     0.046
+     0.242,
+     0.39
     ]
    },
    "site": {
-    "eta2": 0.005,
+    "eta2": 0.0,
     "ci": [
      0.0,
-     0.025
+     0.027
+    ]
+   },
+   "genre": {
+    "eta2": 0.563,
+    "ci": [
+     0.454,
+     0.633
+    ]
+   },
+   "model_x_site": {
+    "eta2": 0.008,
+    "ci": [
+     0.004,
+     0.021
+    ]
+   },
+   "model_x_genre": {
+    "eta2": 0.097,
+    "ci": [
+     0.073,
+     0.125
+    ]
+   },
+   "site_x_genre": {
+    "eta2": 0.009,
+    "ci": [
+     0.0,
+     0.057
+    ]
+   },
+   "model_x_site_x_genre": {
+    "eta2": 0.011,
+    "ci": [
+     0.006,
+     0.026
+    ]
+   }
+  },
+  "paired_contrast_model_x_genre_minus_model_x_site": {
+   "contrastive_8": {
+    "delta_eta2": 0.089,
+    "ci": [
+     0.06,
+     0.114
+    ]
+   },
+   "full_panel_13": {
+    "delta_eta2": 0.062,
+    "ci": [
+     0.046,
+     0.078
     ]
    }
   }
  },
  "table6_scoring_sensitivity": {
-  "_note": "Contrastive-panel eta-squared and cross-site tau across scoring choices. Row 1 = primary (patient-clustered, = Table 5). Rows 2-4 re-scored, unweighted cell means; not for exact numerical comparison with row 1.",
+  "_note": "Contrastive-panel eta-squared and cross-site tau across scoring choices. Row 1 = primary (patient-clustered, = Table 5). Rows 2-4 are descriptive sensitivities re-scored from cached chunk embeddings using unweighted cell means and do not carry the bootstrap uncertainty of the primary analysis; compare qualitatively rather than inferentially.",
   "best_chunk_primary": {
-   "genre": 0.535,
-   "model": 0.329,
-   "site": 0.005,
-   "model_x_site": 0.012,
+   "genre": 0.563,
+   "model": 0.311,
+   "site": 0.0,
+   "model_x_site": 0.008,
    "tau_discharge": 0.86,
-   "tau_imaging": 0.71
+   "tau_imaging": 0.64
   },
   "mean_pooled": {
-   "genre": 0.211,
-   "model": 0.403,
-   "site": 0.16,
-   "model_x_site": 0.028,
-   "tau_discharge": 0.64,
-   "tau_imaging": 0.86
-  },
-  "single_random_chunk": {
-   "genre": 0.63,
-   "model": 0.259,
-   "site": 0.07,
-   "model_x_site": 0.01,
+   "genre": 0.213,
+   "model": 0.39,
+   "site": 0.172,
+   "model_x_site": 0.029,
    "tau_discharge": 0.71,
    "tau_imaging": 0.71
   },
+  "single_random_chunk_20_seeds": {
+   "genre": 0.717,
+   "model": 0.214,
+   "site": 0.023,
+   "model_x_site": 0.013,
+   "tau_discharge": 0.65,
+   "tau_imaging": 0.69,
+   "sd_across_seeds": {
+    "genre": 0.027,
+    "model": 0.025,
+    "site": 0.008,
+    "model_x_site": 0.005
+   },
+   "n_seeds": 20
+  },
   "mean_centered_best_chunk": {
-   "genre": 0.364,
-   "model": 0.399,
-   "site": 0.001,
-   "model_x_site": 0.01,
-   "tau_discharge": 0.79,
+   "genre": 0.356,
+   "model": 0.404,
+   "site": 0.002,
+   "model_x_site": 0.005,
+   "tau_discharge": 0.86,
    "tau_imaging": 0.57
   }
  },
@@ -550,21 +840,21 @@
    "UCSF_imaging": 1
   },
   "null_slope_range_across_models": [
-   0.01,
-   0.08
+   0.013,
+   0.075
   ]
  },
  "robustness_anisotropy": {
-  "_note": "Mean off-diagonal cosine between unrelated document chunks (higher = more anisotropic).",
+  "_note": "Mean off-diagonal cosine between unrelated document chunks, averaged over the four cells (higher = more anisotropic). Describes embedding geometry, not retrieval performance.",
   "by_model": {
-   "e5": 0.84,
-   "gte": 0.79,
-   "medcpt": 0.77,
-   "bge": 0.67,
-   "nomic": 0.65,
-   "mpnet": 0.46,
-   "minilm": 0.43,
-   "biolord": 0.3
+   "e5": 0.835,
+   "gte": 0.793,
+   "medcpt": 0.765,
+   "nomic": 0.689,
+   "bge": 0.668,
+   "mpnet": 0.457,
+   "minilm": 0.425,
+   "biolord": 0.302
   },
   "mean_centering_removes_floor_to": 0.0
  }

@@ -179,7 +179,33 @@ def main():
         print("  caching (np.save per cell/model). Point estimates below use the logged MRRs.\n")
 
     # ---- point decompositions ----
-    pmap = {(s, g, m): POINT[m][f"{s}|{g}"] for s in SITES for g in GENRES for m in ALL}
+    # Point estimates are computed from the cached rr vectors whenever they are
+    # available, so that they always reflect the current embeddings. POINT is a
+    # fallback for the case where the rr cache is absent; it is a record of a
+    # previous run and must not be used to describe a re-run.
+    if have_ci:
+        pmap = {}
+        missing = []
+        for s in SITES:
+            for g in GENRES:
+                for m in ALL:
+                    key = f"{s}_{g}__{m}"
+                    if key in rr:
+                        pmap[(s, g, m)] = float(rr[key].mean())
+                    else:
+                        missing.append(key)
+        if missing:
+            print(f"  WARNING: {len(missing)} model/cell rr vectors missing; "
+                  f"falling back to stored POINT values for those cells")
+            for s in SITES:
+                for g in GENRES:
+                    for m in ALL:
+                        pmap.setdefault((s, g, m), POINT[m][f"{s}|{g}"])
+        else:
+            print("  Point estimates recomputed from cached rr vectors.\n")
+    else:
+        print("  Point estimates taken from the stored POINT table (rr cache absent).\n")
+        pmap = {(s, g, m): POINT[m][f"{s}|{g}"] for s in SITES for g in GENRES for m in ALL}
     print("VARIANCE DECOMPOSITION — full panel vs contrastive-only")
     print("-" * 90)
     print(f"  {'term':<20}{'full 13':>12}{'contrastive 8':>16}")
