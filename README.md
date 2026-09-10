@@ -1,6 +1,6 @@
 # Cross-Site Stability of Embedding Model Rankings for Known-Item Retrieval From Clinical Notes
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21434089.svg)](https://doi.org/10.5281/zenodo.21434089)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21434088.svg)](https://doi.org/10.5281/zenodo.21434088)
 
 Analysis code and aggregate results for the two-corpus comparative evaluation study
 (BIDMC/MIMIC-IV-Note vs UCSF/ER-Reason). This repository reproduces every table and figure in
