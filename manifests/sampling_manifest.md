@@ -23,7 +23,7 @@ redistributed here.
    discharge notes, 12.2% of ER-Reason imaging notes, and 0.77% of MIMIC-IV radiology notes.
    The normalized-text key removes digits, so two templated notes that differ only in numerical
    content are collapsed. Every merged group was classified exhaustively (see
-   `src/revision/dup_classify.py`): of 10,110 merged groups across the four source corpora and their four site×genre cells,
+   `src/revision/dup_classify.py`): of 10,110 merged groups across the two corpora and their four site×genre cells,
    9,707 (96.0%) were byte-identical, differed only in whitespace, punctuation or case while
    carrying the identical digit sequence, or became identical after the pipeline's own date,
    time and identifier scrubbing. The remaining 403 groups (1,007 documents) differ in content
