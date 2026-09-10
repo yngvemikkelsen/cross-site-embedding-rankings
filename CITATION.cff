@@ -7,7 +7,7 @@ authors:
     affiliation: "Saïd Business School, University of Oxford"
 repository-code: "https://github.com/yngvemikkelsen/cross-site-embedding-rankings"
 license: MIT
-version: "2.0.1"
+version: "2.0.2"
 date-released: "2026-09-10"
 doi: 10.5281/zenodo.21434088
 keywords:
