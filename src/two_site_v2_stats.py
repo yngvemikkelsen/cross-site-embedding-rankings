@@ -2,8 +2,8 @@
 
 The reviewer's central methodological point: the "model dominates" headline (eta2_model=0.87)
 is an artefact of including 5 weak MLM comparators. Among the 8 deployment-relevant
-contrastive models, GENRE dominates (0.55) and model is second (0.33). Cross-site transfer
-is unaffected (site ~0, model x site 0.009), but the framing must change.
+contrastive models, GENRE dominates (0.563) and model is second (0.311). Cross-site transfer
+is unaffected (site 0.000, model x site 0.008), but the framing must change.
 
 Two analytical additions are needed before the rewrite, because they change what can be
 claimed:
@@ -46,12 +46,12 @@ MLM = ["bert-base", "biobert", "clinicalbert", "pubmedbert", "scibert"]
 ALL = CONTRA + MLM
 SITES, GENRES = ["BIDMC", "UCSF"], ["discharge", "imaging"]
 
-# Point MRRs (chunked run) — fallback if RR vectors not cached
+# Point MRRs (chunked run, corrected per-window prefixes) — fallback if RR vectors not cached
 POINT = {
  'bge':{'BIDMC|discharge':0.2802,'BIDMC|imaging':0.1811,'UCSF|discharge':0.2815,'UCSF|imaging':0.1835},
  'gte':{'BIDMC|discharge':0.2966,'BIDMC|imaging':0.1954,'UCSF|discharge':0.3013,'UCSF|imaging':0.1994},
- 'e5':{'BIDMC|discharge':0.2275,'BIDMC|imaging':0.1676,'UCSF|discharge':0.2420,'UCSF|imaging':0.1392},
- 'nomic':{'BIDMC|discharge':0.3380,'BIDMC|imaging':0.1922,'UCSF|discharge':0.2923,'UCSF|imaging':0.1913},
+ 'e5':{'BIDMC|discharge':0.2330,'BIDMC|imaging':0.1818,'UCSF|discharge':0.2519,'UCSF|imaging':0.1577},
+ 'nomic':{'BIDMC|discharge':0.3292,'BIDMC|imaging':0.1885,'UCSF|discharge':0.2979,'UCSF|imaging':0.1771},
  'mpnet':{'BIDMC|discharge':0.2659,'BIDMC|imaging':0.1853,'UCSF|discharge':0.2909,'UCSF|imaging':0.1645},
  'minilm':{'BIDMC|discharge':0.2333,'BIDMC|imaging':0.1709,'UCSF|discharge':0.2644,'UCSF|imaging':0.1560},
  'medcpt':{'BIDMC|discharge':0.1517,'BIDMC|imaging':0.1461,'UCSF|discharge':0.1743,'UCSF|imaging':0.1463},
@@ -277,7 +277,7 @@ def main():
     print("  * Cross-site transfer conclusion UNCHANGED: site~0, model×site~0.01, and")
     print("    model×genre > model×site in both scopes.")
     print("  * This ALIGNS with Paper 3 (context rivals model choice), strengthening it.")
-    print("  * Regret 0.041 on discharge = ~12% of destination best MRR — call it")
+    print("  * Regret 0.033 on discharge = ~10% of destination best MRR — call it")
     print("    'modest', not 'negligible'.")
 
 
