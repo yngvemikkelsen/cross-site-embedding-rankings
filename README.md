@@ -15,6 +15,25 @@ rules, and the aggregate (non-identifying) numerical results.
 git clone https://github.com/yngvemikkelsen/cross-site-embedding-rankings.git
 ```
 
+## Version 2.0.4 — second peer-review revision
+
+This release accompanies the second revision of the manuscript (JMIR AI #109305). No analysis
+code changed and no reported value is affected; the changes are to path handling and to code
+comments that had become misleading.
+
+- `src/two_site.py` was the only script still carrying a machine-specific path literal, while
+  every other script already read its locations from the environment. Its three constants now
+  read `MIMIC_NOTE_DIR`, `ER_REASON_CSV` and `RESULTS_DIR`, with the required `os` import
+  added. Defaults are unchanged, so an existing run is unaffected unless the variables are set.
+- `src/chunk_sensitivity2.py` and `src/anisotropy_check.py` quoted two variance components in
+  their docstrings — genre eta-squared 0.348 for the superseded first-chunk/capped-k=1 scorer,
+  and 0.157 for length-normalised maximum similarity — that predate the per-window
+  instruction-prefix correction of v2.0.0. Both are now annotated as pre-correction values.
+  On the corrected embeddings the length-normalised scorer gives genre eta-squared 0.165; the
+  first-chunk scorer was not re-run after the correction because it had already been rejected
+  on design grounds. The complete inventory of every scorer that was run, with its values and
+  the chronology of these decisions, is in Multimedia Appendix 2 of the manuscript.
+
 ## Version 2.0.3 — peer-review revision
 
 This release accompanies the revised manuscript (JMIR AI #109305) and supersedes v1.1.2.
@@ -57,6 +76,7 @@ model×site 0.012 to 0.008. The substantive conclusions are unchanged.
 src/                          analysis pipeline (run in order; see docs/RUN.md)
   two_site.py                   query extraction primitives: scrub, reflow, sentences,
                                 build_df, narrative_query (imported by two_site_v2.py)
+                                [paths parameterized in v2.0.4]
   two_site_v2.py                data layer: extract, dedup, patient IDs, query-excluded
                                 targets, matched N=1235
   two_site_v2_analyze.py        model layer: embed (13 models), chunk, score, cache RR
@@ -108,7 +128,8 @@ README.md                     this file
 
 Place the downloaded corpora where the scripts expect them and follow `docs/RUN.md`. Corpus
 locations and the results directory are set by environment variables or command-line flags;
-see the top of `src/two_site_v2.py`.
+see the top of `src/two_site_v2.py` and `src/two_site.py`. The variables are `RESULTS_DIR`
+(required), `ER_REASON_CSV` and `MIMIC_NOTE_DIR`.
 
 ## Reproducing the results
 
