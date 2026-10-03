@@ -9,6 +9,14 @@ cosine ~0.8, the embedding space is ANISOTROPIC (all vectors point in a similar 
 and the length-norm correction may be measuring anisotropy rather than the chunk-count
 order statistic it was meant to remove. In that case its genre η²=0.157 is NOT trustworthy.
 
+NOTE (release 2.0.4): every η²=0.157 in this file is a PRE-CORRECTION value, computed
+before the per-window instruction-prefix fix of release 2.0.0, and is retained only as the
+comment text of the original decision. On the corrected embeddings the length-normalised
+scorer gives genre η²=0.165. The diagnostic below was run on the corrected embeddings and
+its conclusion is unchanged: the subtracted null is dominated by the anisotropy floor
+(slope/floor 0.02-0.14), so length-norm is reported for completeness in Multimedia
+Appendix 2 rather than in Table 6, and mean-centering is the geometric check reported.
+
 This script measures anisotropy directly, so the length-norm result can be trusted or
 discarded on evidence rather than assumption. It does NOT re-embed; it reads cached vectors.
 

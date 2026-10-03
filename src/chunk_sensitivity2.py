@@ -9,6 +9,13 @@ boilerplate we removed from queries. The query is the HPI, buried mid-note. So f
 discards the relevant span for long docs; its genre eta2 of 0.348 UNDERSTATES genre by
 header-truncation, it does not cleanly correct for chunk count. That was an over-claim.
 
+NOTE (release 2.0.4): the 0.348 above is a PRE-CORRECTION value, computed before the
+per-window instruction-prefix fix of release 2.0.0. The first-chunk/capped-k=1 scorer was
+not re-run afterwards because it had already been rejected on the design grounds set out
+above, and its script is not deposited. The complete inventory of every scorer evaluated,
+with corrected values and the chronology of these decisions, is in Multimedia Appendix 2
+of the manuscript.
+
 THE CORRECT CONTROL
 -------------------
 The order-statistic advantage is: a document with k chunks gets k independent draws at

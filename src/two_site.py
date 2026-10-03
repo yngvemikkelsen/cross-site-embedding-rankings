@@ -80,6 +80,7 @@ from __future__ import annotations
 import argparse
 import gc
 import json
+import os
 import re
 from pathlib import Path
 
@@ -87,9 +88,11 @@ import numpy as np
 import pandas as pd
 
 SEED, TOP_K, N_BOOT = 42, 10, 2000
-MIMIC_NOTE = Path.home() / "physionet.org" / "files" / "mimic-iv-note" / "2.2" / "note"
-ER = Path("/Users/yngve/physionet.org/files/er-reason/1.0.0/er_reason.csv")
-RESULTS = Path.home() / "Projects" / "paper13" / "results"
+MIMIC_NOTE = Path(os.environ.get("MIMIC_NOTE_DIR",
+             str(Path.home() / "physionet.org" / "files" / "mimic-iv-note" / "2.2" / "note")))
+ER = Path(os.environ.get("ER_REASON_CSV",
+          str(Path.home() / "physionet.org" / "files" / "er-reason" / "1.0.0" / "er_reason.csv")))
+RESULTS = Path(os.environ.get("RESULTS_DIR", str(Path.home() / "paper19_results")))
 CACHE = RESULTS / "two_site_cache"
 
 PANEL = [
