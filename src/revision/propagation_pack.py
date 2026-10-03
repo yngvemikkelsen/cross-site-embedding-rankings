@@ -23,7 +23,7 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import kendalltau
 
-RESULTS = Path(os.environ.get("RESULTS_DIR", "/Users/yngve/projects/paper13/results"))
+RESULTS = Path(os.environ.get("RESULTS_DIR", str(Path.home() / "paper19_results")))
 RRCACHE = RESULTS / "two_site_v2_rr_chunk"
 CELLS = RESULTS / "two_site_v2_cells.json"
 

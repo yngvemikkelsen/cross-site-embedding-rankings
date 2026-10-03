@@ -17,7 +17,7 @@ from pathlib import Path
 
 import numpy as np
 
-RESULTS = Path(os.environ.get("RESULTS_DIR", "/Users/yngve/projects/paper13/results"))
+RESULTS = Path(os.environ.get("RESULTS_DIR", str(Path.home() / "paper19_results")))
 CELLCACHE = RESULTS / "two_site_v2_cells.json"
 WORD = re.compile(r"\S+")
 

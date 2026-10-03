@@ -33,6 +33,10 @@ comments that had become misleading.
   first-chunk scorer was not re-run after the correction because it had already been rejected
   on design grounds. The complete inventory of every scorer that was run, with its values and
   the chronology of these decisions, is in Multimedia Appendix 2 of the manuscript.
+- The six scripts under `src/revision/` read `SRC` and `RESULTS_DIR` from the environment but
+  defaulted to absolute paths on the author's machine. The defaults are now portable: `SRC`
+  resolves to the script's own parent directory and `RESULTS_DIR` to `~/paper19_results`,
+  matching the core scripts, so these analyses run from a fresh clone without configuration.
 
 ## Version 2.0.3 — peer-review revision
 

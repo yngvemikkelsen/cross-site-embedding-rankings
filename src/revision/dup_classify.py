@@ -33,8 +33,8 @@ from pathlib import Path
 
 import numpy as np
 
-SRC = Path(os.environ.get("SRC", "/Users/yngve/projects/paper9"))
-RESULTS = Path(os.environ.get("RESULTS_DIR", "/Users/yngve/projects/paper13/results"))
+SRC = Path(os.environ.get("SRC", str(Path(__file__).resolve().parent.parent)))
+RESULTS = Path(os.environ.get("RESULTS_DIR", str(Path.home() / "paper19_results")))
 SEED = 42
 
 WS = re.compile(r"\s+")

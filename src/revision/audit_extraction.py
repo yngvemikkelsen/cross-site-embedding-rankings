@@ -27,8 +27,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-SRC = Path(os.environ.get("SRC", "/Users/yngve/projects/paper9"))
-RESULTS = Path(os.environ.get("RESULTS_DIR", "/Users/yngve/projects/paper13/results"))
+SRC = Path(os.environ.get("SRC", str(Path(__file__).resolve().parent.parent)))
+RESULTS = Path(os.environ.get("RESULTS_DIR", str(Path.home() / "paper19_results")))
 SEED = 42
 N_DUP_SAMPLE = 60          # duplicate pairs to write out for adjudication
 

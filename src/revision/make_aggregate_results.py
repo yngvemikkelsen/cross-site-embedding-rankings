@@ -25,7 +25,7 @@ import json
 import os
 from pathlib import Path
 
-RESULTS = Path(os.environ.get("RESULTS_DIR", "/Users/yngve/projects/paper13/results"))
+RESULTS = Path(os.environ.get("RESULTS_DIR", str(Path.home() / "paper19_results")))
 CONTRA = ["bge", "gte", "e5", "nomic", "mpnet", "minilm", "medcpt", "biolord"]
 MLM = ["bert-base", "biobert", "clinicalbert", "pubmedbert", "scibert"]
 CELLS = ["BIDMC_discharge", "BIDMC_imaging", "UCSF_discharge", "UCSF_imaging"]

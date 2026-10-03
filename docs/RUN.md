@@ -24,8 +24,11 @@ export RESULTS_DIR="/path/to/your/results"         # REQUIRED: where the analysi
                                                     # output tables are written and read.
                                                     # All scripts honour it; set it to the
                                                     # same value for every step.
-# MIMIC-IV-Note note dir defaults to $HOME/physionet.org/files/mimic-iv-note/2.2/note
-# or pass --mimic-note /path/to/note to src/two_site_v2.py
+export MIMIC_NOTE_DIR="$HOME/physionet.org/files/mimic-iv-note/2.2/note"
+                                                    # honoured by src/two_site.py.
+                                                    # src/two_site_v2.py uses the same
+                                                    # default and takes --mimic-note
+                                                    # /path/to/note to override it.
 ```
 
 Corpora needed:
