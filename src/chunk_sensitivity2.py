@@ -13,7 +13,7 @@ NOTE (release 2.0.4): the 0.348 above is a PRE-CORRECTION value, computed before
 per-window instruction-prefix fix of release 2.0.0. The first-chunk/capped-k=1 scorer was
 not re-run afterwards because it had already been rejected on the design grounds set out
 above, and its script is not deposited. The complete inventory of every scorer evaluated,
-with corrected values and the chronology of these decisions, is in Multimedia Appendix 2
+with corrected values and the chronology of these decisions, is in Multimedia Appendix 1
 of the manuscript.
 
 THE CORRECT CONTROL

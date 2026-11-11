@@ -7,8 +7,8 @@ authors:
     affiliation: "Saïd Business School, University of Oxford"
 repository-code: "https://github.com/yngvemikkelsen/cross-site-embedding-rankings"
 license: MIT
-version: "2.0.4"
-date-released: "2026-10-03"
+version: "2.0.5"
+date-released: "2026-11-11"
 doi: 10.5281/zenodo.21434088
 keywords:
   - clinical natural language processing
@@ -19,9 +19,16 @@ keywords:
   - electronic health records
 preferred-citation:
   type: article
-  title: "Cross-Site Stability of Embedding Model Rankings for Known-Item Retrieval From Clinical Notes: A Two-Corpus Comparative Evaluation Study"
+  title: "Cross-Site Stability of Embedding Model Rankings for Known-Item Retrieval From Clinical Notes: Two-Corpus Comparative Evaluation Study"
   authors:
     - family-names: Mikkelsen
       given-names: Yngve
-  # journal, year, volume, doi to be completed on acceptance
-  notes: "Manuscript under submission; complete bibliographic details on publication."
+  journal: "JMIR AI"
+  issn: "2817-1705"
+  year: 2026
+  month: 11
+  volume: 5
+  issue: 1
+  start: "e109305"
+  doi: 10.2196/109305
+  url: "https://ai.jmir.org/2026/1/e109305"

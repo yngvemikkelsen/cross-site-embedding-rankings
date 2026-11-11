@@ -15,7 +15,7 @@ comment text of the original decision. On the corrected embeddings the length-no
 scorer gives genre η²=0.165. The diagnostic below was run on the corrected embeddings and
 its conclusion is unchanged: the subtracted null is dominated by the anisotropy floor
 (slope/floor 0.02-0.14), so length-norm is reported for completeness in Multimedia
-Appendix 2 rather than in Table 6, and mean-centering is the geometric check reported.
+Appendix 1 rather than in Table 6, and mean-centering is the geometric check reported.
 
 This script measures anisotropy directly, so the length-norm result can be trusted or
 discarded on evidence rather than assumption. It does NOT re-embed; it reads cached vectors.

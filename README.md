@@ -15,6 +15,21 @@ rules, and the aggregate (non-identifying) numerical results.
 git clone https://github.com/yngvemikkelsen/cross-site-embedding-rankings.git
 ```
 
+## Version 2.0.5 — publication release
+
+This release accompanies publication of the manuscript in JMIR AI on 11 November 2026
+(JMIR AI 2026;5:e109305, doi:10.2196/109305). No analysis code changed and no reported value
+is affected.
+
+- `CITATION.cff` now carries the complete bibliographic details of the published article in
+  its `preferred-citation` block, replacing the placeholder that was in place while the
+  manuscript was under submission.
+- The multimedia appendices were renumbered during copyediting. Cross-references in
+  `README.md`, `src/chunk_sensitivity2.py` and `src/anisotropy_check.py` now use the numbering
+  of the published article: Appendix 1 (per-model secondary retrieval metrics, the scorer
+  inventory and the chronology of scoring decisions), Appendix 2 (query length distributions
+  across the four cells), Appendix 3 (declaration of generative AI assistance).
+
 ## Version 2.0.4 — second peer-review revision
 
 This release accompanies the second revision of the manuscript (JMIR AI #109305). No analysis
@@ -32,7 +47,7 @@ comments that had become misleading.
   On the corrected embeddings the length-normalised scorer gives genre eta-squared 0.165; the
   first-chunk scorer was not re-run after the correction because it had already been rejected
   on design grounds. The complete inventory of every scorer that was run, with its values and
-  the chronology of these decisions, is in Multimedia Appendix 2 of the manuscript.
+  the chronology of these decisions, is in Multimedia Appendix 1 of the manuscript.
 - The six scripts under `src/revision/` read `SRC` and `RESULTS_DIR` from the environment but
   defaulted to absolute paths on the author's machine. The defaults are now portable: `SRC`
   resolves to the script's own parent directory and `RESULTS_DIR` to `~/paper19_results`,
@@ -87,7 +102,7 @@ src/                          analysis pipeline (run in order; see docs/RUN.md)
                                 vectors  [corrected in v2.0.0]
   two_site_v2_stats.py          statistics: patient-clustered bootstrap CIs; variance
                                 decomposition (Tables 3-5)  [corrected in v2.0.0]
-  two_site_v2_hits.py           secondary metrics: Hit@1 and Hit@10 (Table 2, Appendix 2)
+  two_site_v2_hits.py           secondary metrics: Hit@1 and Hit@10 (Table 2, Appendix 1)
   chunk_sensitivity2.py         robustness: chunk-count / order-statistic sensitivity
                                 (Table 6, part)
   anisotropy_check.py           robustness: embedding anisotropy diagnostic
@@ -102,7 +117,7 @@ src/revision/                 analyses added in response to peer review
                                 (comment 5)
   audit_extraction.py           per-criterion extraction attrition and sentence-level filter
                                 counts (comments 9 and 15)
-  query_length_table.py         query length distributions by cell (comment 19, Appendix 3)
+  query_length_table.py         query length distributions by cell (comment 19, Appendix 2)
 manifests/
   models.csv                    exact HF repo, pooling, prefixes for all 13 models
   models_resolved.csv           (generated) exact commit hash per model — run
@@ -153,7 +168,7 @@ export RESULTS_DIR=/path/to/results
 python src/two_site_v2.py --build                 # build matched analysis set
 python src/two_site_v2_analyze.py --run --chunk   # embed + score (GPU/MPS recommended)
 python src/two_site_v2_stats.py                   # Tables 3-5
-python src/two_site_v2_hits.py                    # Table 2, Appendix 2
+python src/two_site_v2_hits.py                    # Table 2, Appendix 1
 python src/chunk_sensitivity2.py                  # chunk-count robustness (Table 6)
 python src/anisotropy_check.py                    # anisotropy diagnostic
 python src/centering_check.py                     # centering robustness (Table 6)
@@ -184,8 +199,11 @@ contrasts in a single run and is the quickest way to verify the reported values.
 
 ## Citation
 
-If you use this code, please cite the manuscript (details on publication) and the two source
-corpora (DOIs above). A `CITATION.cff` is included so GitHub's "Cite this repository" button
+If you use this code, please cite the article and the two source corpora (DOIs above):
+
+> Mikkelsen Y. Cross-site stability of embedding model rankings for known-item retrieval from
+> clinical notes: two-corpus comparative evaluation study. JMIR AI. 2026;5:e109305.
+> doi:10.2196/109305 A `CITATION.cff` is included so GitHub's "Cite this repository" button
 produces a ready-made reference. Archived release: doi:10.5281/zenodo.21434088
 (https://doi.org/10.5281/zenodo.21434088).
 
